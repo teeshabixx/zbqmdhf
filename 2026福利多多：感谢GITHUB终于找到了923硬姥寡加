@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+www.baike.nyrenkang.com/Article/details/13575728.SHtML<br>
+www.baike.nyrenkang.com/Article/details/77554484.SHtML<br>
+www.baike.nyrenkang.com/Article/details/79628220.SHtML<br>
+www.baike.nyrenkang.com/Article/details/46573257.SHtML<br>
+www.baike.nyrenkang.com/Article/details/61001072.SHtML<br>
+www.baike.nyrenkang.com/Article/details/61280645.SHtML<br>
+www.baike.nyrenkang.com/Article/details/37233698.SHtML<br>
+www.baike.nyrenkang.com/Article/details/17521291.SHtML<br>
+www.baike.nyrenkang.com/Article/details/12779516.SHtML<br>
+www.baike.nyrenkang.com/Article/details/29847030.SHtML<br>
+www.baike.nyrenkang.com/Article/details/98770303.SHtML<br>
+www.baike.nyrenkang.com/Article/details/08132336.SHtML<br>
+www.baike.nyrenkang.com/Article/details/88769525.SHtML<br>
+www.baike.nyrenkang.com/Article/details/05058432.SHtML<br>
+www.baike.nyrenkang.com/Article/details/43909837.SHtML<br>
+www.baike.nyrenkang.com/Article/details/29637043.SHtML<br>
+www.baike.nyrenkang.com/Article/details/35861515.SHtML<br>
+www.baike.nyrenkang.com/Article/details/71455221.SHtML<br>
+www.baike.nyrenkang.com/Article/details/73911097.SHtML<br>
+www.baike.nyrenkang.com/Article/details/08751856.SHtML<br>
+www.baike.nyrenkang.com/Article/details/87383772.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24650758.SHtML<br>
+www.baike.nyrenkang.com/Article/details/10951127.SHtML<br>
+www.baike.nyrenkang.com/Article/details/13991385.SHtML<br>
+www.baike.nyrenkang.com/Article/details/39300949.SHtML<br>
+www.baike.nyrenkang.com/Article/details/50625031.SHtML<br>
+www.baike.nyrenkang.com/Article/details/50600283.SHtML<br>
+www.baike.nyrenkang.com/Article/details/15417065.SHtML<br>
+www.baike.nyrenkang.com/Article/details/42763552.SHtML<br>
+www.baike.nyrenkang.com/Article/details/02821930.SHtML<br>
+www.baike.nyrenkang.com/Article/details/45885578.SHtML<br>
+www.baike.nyrenkang.com/Article/details/94533813.SHtML<br>
+www.baike.nyrenkang.com/Article/details/06533102.SHtML<br>
+www.baike.nyrenkang.com/Article/details/56410741.SHtML<br>
+www.baike.nyrenkang.com/Article/details/86204031.SHtML<br>
+www.baike.nyrenkang.com/Article/details/69210390.SHtML<br>
+www.baike.nyrenkang.com/Article/details/22308792.SHtML<br>
+www.baike.nyrenkang.com/Article/details/03299525.SHtML<br>
+www.baike.nyrenkang.com/Article/details/50505770.SHtML<br>
+www.baike.nyrenkang.com/Article/details/85814577.SHtML<br>
+www.baike.nyrenkang.com/Article/details/03964408.SHtML<br>
+www.baike.nyrenkang.com/Article/details/78594957.SHtML<br>
+www.baike.nyrenkang.com/Article/details/32466503.SHtML<br>
+www.baike.nyrenkang.com/Article/details/74937142.SHtML<br>
+www.baike.nyrenkang.com/Article/details/11946049.SHtML<br>
+www.baike.nyrenkang.com/Article/details/11840821.SHtML<br>
+www.baike.nyrenkang.com/Article/details/18489814.SHtML<br>
+www.baike.nyrenkang.com/Article/details/13554324.SHtML<br>
+www.baike.nyrenkang.com/Article/details/54013228.SHtML<br>
+www.baike.nyrenkang.com/Article/details/91745484.SHtML<br>
+www.baike.nyrenkang.com/Article/details/44027466.SHtML<br>
+www.baike.nyrenkang.com/Article/details/39081375.SHtML<br>
+www.baike.nyrenkang.com/Article/details/45414297.SHtML<br>
+www.baike.nyrenkang.com/Article/details/40866159.SHtML<br>
+www.baike.nyrenkang.com/Article/details/26863341.SHtML<br>
+www.baike.nyrenkang.com/Article/details/19913287.SHtML<br>
+www.baike.nyrenkang.com/Article/details/27654885.SHtML<br>
+www.baike.nyrenkang.com/Article/details/84991389.SHtML<br>
+www.baike.nyrenkang.com/Article/details/63060619.SHtML<br>
+www.baike.nyrenkang.com/Article/details/91653384.SHtML<br>
+www.baike.nyrenkang.com/Article/details/79247343.SHtML<br>
+www.baike.nyrenkang.com/Article/details/32408282.SHtML<br>
+www.baike.nyrenkang.com/Article/details/06294183.SHtML<br>
+www.baike.nyrenkang.com/Article/details/31692775.SHtML<br>
+www.baike.nyrenkang.com/Article/details/13500243.SHtML<br>
+www.baike.nyrenkang.com/Article/details/61961155.SHtML<br>
+www.baike.nyrenkang.com/Article/details/19172444.SHtML<br>
+www.baike.nyrenkang.com/Article/details/91742490.SHtML<br>
+www.baike.nyrenkang.com/Article/details/76552137.SHtML<br>
+www.baike.nyrenkang.com/Article/details/13657877.SHtML<br>
+www.baike.nyrenkang.com/Article/details/80817356.SHtML<br>
+www.baike.nyrenkang.com/Article/details/63557835.SHtML<br>
+www.baike.nyrenkang.com/Article/details/57988499.SHtML<br>
+www.baike.nyrenkang.com/Article/details/50210990.SHtML<br>
+www.baike.nyrenkang.com/Article/details/93541608.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64451109.SHtML<br>
+www.baike.nyrenkang.com/Article/details/46328355.SHtML<br>
+www.baike.nyrenkang.com/Article/details/86585396.SHtML<br>
+www.baike.nyrenkang.com/Article/details/70444028.SHtML<br>
+www.baike.nyrenkang.com/Article/details/97625439.SHtML<br>
+www.baike.nyrenkang.com/Article/details/75705647.SHtML<br>
+www.baike.nyrenkang.com/Article/details/23167612.SHtML<br>
+www.baike.nyrenkang.com/Article/details/45874042.SHtML<br>
+www.baike.nyrenkang.com/Article/details/71761852.SHtML<br>
+www.baike.nyrenkang.com/Article/details/16862605.SHtML<br>
+www.baike.nyrenkang.com/Article/details/90901716.SHtML<br>
+www.baike.nyrenkang.com/Article/details/32771402.SHtML<br>
+www.baike.nyrenkang.com/Article/details/83554006.SHtML<br>
+www.baike.nyrenkang.com/Article/details/93652766.SHtML<br>
+www.baike.nyrenkang.com/Article/details/68329495.SHtML<br>
+www.baike.nyrenkang.com/Article/details/98335842.SHtML<br>
+www.baike.nyrenkang.com/Article/details/10587824.SHtML<br>
+www.baike.nyrenkang.com/Article/details/20556289.SHtML<br>
+www.baike.nyrenkang.com/Article/details/87210013.SHtML<br>
+www.baike.nyrenkang.com/Article/details/94601732.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24925350.SHtML<br>
+www.baike.nyrenkang.com/Article/details/31730032.SHtML<br>
+www.baike.nyrenkang.com/Article/details/79011170.SHtML<br>
+www.baike.nyrenkang.com/Article/details/89406980.SHtML<br>
+www.baike.nyrenkang.com/Article/details/65255433.SHtML<br>
+www.baike.nyrenkang.com/Article/details/38039078.SHtML<br>
+www.baike.nyrenkang.com/Article/details/31039861.SHtML<br>
+www.baike.nyrenkang.com/Article/details/46804594.SHtML<br>
+www.baike.nyrenkang.com/Article/details/79475568.SHtML<br>
+www.baike.nyrenkang.com/Article/details/90629033.SHtML<br>
+www.baike.nyrenkang.com/Article/details/05099151.SHtML<br>
+www.baike.nyrenkang.com/Article/details/15151122.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64521681.SHtML<br>
+www.baike.nyrenkang.com/Article/details/81630627.SHtML<br>
+www.baike.nyrenkang.com/Article/details/56549414.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64673559.SHtML<br>
+www.baike.nyrenkang.com/Article/details/00274003.SHtML<br>
+www.baike.nyrenkang.com/Article/details/68366940.SHtML<br>
+www.baike.nyrenkang.com/Article/details/05130554.SHtML<br>
+www.baike.nyrenkang.com/Article/details/78069668.SHtML<br>
+www.baike.nyrenkang.com/Article/details/38417461.SHtML<br>
+www.baike.nyrenkang.com/Article/details/45314596.SHtML<br>
+www.baike.nyrenkang.com/Article/details/90947529.SHtML<br>
+www.baike.nyrenkang.com/Article/details/65383474.SHtML<br>
+www.baike.nyrenkang.com/Article/details/42186394.SHtML<br>
+www.baike.nyrenkang.com/Article/details/27745705.SHtML<br>
+www.baike.nyrenkang.com/Article/details/08709379.SHtML<br>
+www.baike.nyrenkang.com/Article/details/49147940.SHtML<br>
+www.baike.nyrenkang.com/Article/details/38030914.SHtML<br>
+www.baike.nyrenkang.com/Article/details/20777143.SHtML<br>
+www.baike.nyrenkang.com/Article/details/74021303.SHtML<br>
+www.baike.nyrenkang.com/Article/details/94520308.SHtML<br>
+www.baike.nyrenkang.com/Article/details/42862138.SHtML<br>
+www.baike.nyrenkang.com/Article/details/13849607.SHtML<br>
+www.baike.nyrenkang.com/Article/details/67065128.SHtML<br>
+www.baike.nyrenkang.com/Article/details/38517229.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24590583.SHtML<br>
+www.baike.nyrenkang.com/Article/details/91086580.SHtML<br>
+www.baike.nyrenkang.com/Article/details/45158914.SHtML<br>
+www.baike.nyrenkang.com/Article/details/87633219.SHtML<br>
+www.baike.nyrenkang.com/Article/details/94350896.SHtML<br>
+www.baike.nyrenkang.com/Article/details/08700422.SHtML<br>
+www.baike.nyrenkang.com/Article/details/28485761.SHtML<br>
+www.baike.nyrenkang.com/Article/details/71336900.SHtML<br>
+www.baike.nyrenkang.com/Article/details/12743932.SHtML<br>
+www.baike.nyrenkang.com/Article/details/94991291.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64903070.SHtML<br>
+www.baike.nyrenkang.com/Article/details/63921153.SHtML<br>
+www.baike.nyrenkang.com/Article/details/97178772.SHtML<br>
+www.baike.nyrenkang.com/Article/details/95072717.SHtML<br>
+www.baike.nyrenkang.com/Article/details/08703595.SHtML<br>
+www.baike.nyrenkang.com/Article/details/46759389.SHtML<br>
+www.baike.nyrenkang.com/Article/details/76868694.SHtML<br>
+www.baike.nyrenkang.com/Article/details/15783302.SHtML<br>
+www.baike.nyrenkang.com/Article/details/97560478.SHtML<br>
+www.baike.nyrenkang.com/Article/details/68302824.SHtML<br>
+www.baike.nyrenkang.com/Article/details/65087211.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24632579.SHtML<br>
+www.baike.nyrenkang.com/Article/details/01659643.SHtML<br>
+www.baike.nyrenkang.com/Article/details/91383381.SHtML<br>
+www.baike.nyrenkang.com/Article/details/91939827.SHtML<br>
+www.baike.nyrenkang.com/Article/details/97816733.SHtML<br>
+www.baike.nyrenkang.com/Article/details/55894066.SHtML<br>
+www.baike.nyrenkang.com/Article/details/15771673.SHtML<br>
+www.baike.nyrenkang.com/Article/details/02817557.SHtML<br>
+www.baike.nyrenkang.com/Article/details/75404359.SHtML<br>
+www.baike.nyrenkang.com/Article/details/05795508.SHtML<br>
+www.baike.nyrenkang.com/Article/details/62630525.SHtML<br>
+www.baike.nyrenkang.com/Article/details/67292112.SHtML<br>
+www.baike.nyrenkang.com/Article/details/27852849.SHtML<br>
+www.baike.nyrenkang.com/Article/details/02740979.SHtML<br>
+www.baike.nyrenkang.com/Article/details/37294183.SHtML<br>
+www.baike.nyrenkang.com/Article/details/89170639.SHtML<br>
+www.baike.nyrenkang.com/Article/details/12514806.SHtML<br>
+www.baike.nyrenkang.com/Article/details/13262598.SHtML<br>
+www.baike.nyrenkang.com/Article/details/27280109.SHtML<br>
+www.baike.nyrenkang.com/Article/details/49810306.SHtML<br>
+www.baike.nyrenkang.com/Article/details/97021783.SHtML<br>
+www.baike.nyrenkang.com/Article/details/49881449.SHtML<br>
+www.baike.nyrenkang.com/Article/details/93281334.SHtML<br>
+www.baike.nyrenkang.com/Article/details/97851084.SHtML<br>
+www.baike.nyrenkang.com/Article/details/43104457.SHtML<br>
+www.baike.nyrenkang.com/Article/details/31977213.SHtML<br>
+www.baike.nyrenkang.com/Article/details/19101815.SHtML<br>
+www.baike.nyrenkang.com/Article/details/08798447.SHtML<br>
+www.baike.nyrenkang.com/Article/details/80555469.SHtML<br>
+www.baike.nyrenkang.com/Article/details/83723984.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64728654.SHtML<br>
+www.baike.nyrenkang.com/Article/details/04050002.SHtML<br>
+www.baike.nyrenkang.com/Article/details/27363699.SHtML<br>
+www.baike.nyrenkang.com/Article/details/51666296.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64699062.SHtML<br>
+www.baike.nyrenkang.com/Article/details/61984004.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24327651.SHtML<br>
+www.baike.nyrenkang.com/Article/details/75769295.SHtML<br>
+www.baike.nyrenkang.com/Article/details/42421000.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64359544.SHtML<br>
+www.baike.nyrenkang.com/Article/details/10354829.SHtML<br>
+www.baike.nyrenkang.com/Article/details/61765058.SHtML<br>
+www.baike.nyrenkang.com/Article/details/46564007.SHtML<br>
+www.baike.nyrenkang.com/Article/details/33850372.SHtML<br>
+www.baike.nyrenkang.com/Article/details/59025892.SHtML<br>
+www.baike.nyrenkang.com/Article/details/20264542.SHtML<br>
+www.baike.nyrenkang.com/Article/details/16391603.SHtML<br>
+www.baike.nyrenkang.com/Article/details/90810964.SHtML<br>
+www.baike.nyrenkang.com/Article/details/68454243.SHtML<br>
+www.baike.nyrenkang.com/Article/details/74799536.SHtML<br>
+www.baike.nyrenkang.com/Article/details/97912442.SHtML<br>
+www.baike.nyrenkang.com/Article/details/02058577.SHtML<br>
+www.baike.nyrenkang.com/Article/details/57651757.SHtML<br>
+www.baike.nyrenkang.com/Article/details/09579970.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24930003.SHtML<br>
+www.baike.nyrenkang.com/Article/details/74782195.SHtML<br>
+www.baike.nyrenkang.com/Article/details/68776825.SHtML<br>
+www.baike.nyrenkang.com/Article/details/12701373.SHtML<br>
+www.baike.nyrenkang.com/Article/details/34819188.SHtML<br>
+www.baike.nyrenkang.com/Article/details/50516852.SHtML<br>
+www.baike.nyrenkang.com/Article/details/67029815.SHtML<br>
+www.baike.nyrenkang.com/Article/details/34915850.SHtML<br>
+www.baike.nyrenkang.com/Article/details/67068163.SHtML<br>
+www.baike.nyrenkang.com/Article/details/34000590.SHtML<br>
+www.baike.nyrenkang.com/Article/details/16111344.SHtML<br>
+www.baike.nyrenkang.com/Article/details/73318354.SHtML<br>
+www.baike.nyrenkang.com/Article/details/30955361.SHtML<br>
+www.baike.nyrenkang.com/Article/details/92065407.SHtML<br>
+www.baike.nyrenkang.com/Article/details/43678252.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64657837.SHtML<br>
+www.baike.nyrenkang.com/Article/details/05436275.SHtML<br>
+www.baike.nyrenkang.com/Article/details/42850998.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64970984.SHtML<br>
+www.baike.nyrenkang.com/Article/details/56576852.SHtML<br>
+www.baike.nyrenkang.com/Article/details/94266840.SHtML<br>
+www.baike.nyrenkang.com/Article/details/48781152.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24367118.SHtML<br>
+www.baike.nyrenkang.com/Article/details/78709234.SHtML<br>
+www.baike.nyrenkang.com/Article/details/67768787.SHtML<br>
+www.baike.nyrenkang.com/Article/details/31438569.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24240690.SHtML<br>
+www.baike.nyrenkang.com/Article/details/51384266.SHtML<br>
+www.baike.nyrenkang.com/Article/details/38364824.SHtML<br>
+www.baike.nyrenkang.com/Article/details/02553576.SHtML<br>
+www.baike.nyrenkang.com/Article/details/83596842.SHtML<br>
+www.baike.nyrenkang.com/Article/details/03214994.SHtML<br>
+www.baike.nyrenkang.com/Article/details/63509958.SHtML<br>
+www.baike.nyrenkang.com/Article/details/79291039.SHtML<br>
+www.baike.nyrenkang.com/Article/details/56255189.SHtML<br>
+www.baike.nyrenkang.com/Article/details/02006113.SHtML<br>
+www.baike.nyrenkang.com/Article/details/50161285.SHtML<br>
+www.baike.nyrenkang.com/Article/details/53243925.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24054817.SHtML<br>
+www.baike.nyrenkang.com/Article/details/65096914.SHtML<br>
+www.baike.nyrenkang.com/Article/details/45425575.SHtML<br>
+www.baike.nyrenkang.com/Article/details/19451858.SHtML<br>
+www.baike.nyrenkang.com/Article/details/91673716.SHtML<br>
+www.baike.nyrenkang.com/Article/details/21276715.SHtML<br>
+www.baike.nyrenkang.com/Article/details/05400935.SHtML<br>
+www.baike.nyrenkang.com/Article/details/99041498.SHtML<br>
+www.baike.nyrenkang.com/Article/details/28328015.SHtML<br>
+www.baike.nyrenkang.com/Article/details/23947987.SHtML<br>
+www.baike.nyrenkang.com/Article/details/20328755.SHtML<br>
+www.baike.nyrenkang.com/Article/details/02468445.SHtML<br>
+www.baike.nyrenkang.com/Article/details/51097967.SHtML<br>
+www.baike.nyrenkang.com/Article/details/75401728.SHtML<br>
+www.baike.nyrenkang.com/Article/details/13880319.SHtML<br>
+www.baike.nyrenkang.com/Article/details/12146407.SHtML<br>
+www.baike.nyrenkang.com/Article/details/64873905.SHtML<br>
+www.baike.nyrenkang.com/Article/details/75470622.SHtML<br>
+www.baike.nyrenkang.com/Article/details/20658470.SHtML<br>
+www.baike.nyrenkang.com/Article/details/35791106.SHtML<br>
+www.baike.nyrenkang.com/Article/details/24593328.SHtML<br>
+www.baike.nyrenkang.com/Article/details/32722916.SHtML<br>
+www.baike.nyrenkang.com/Article/details/11340779.SHtML<br>
+www.baike.nyrenkang.com/Article/details/56960042.SHtML<br>
+www.baike.nyrenkang.com/Article/details/23288561.SHtML<br>
+www.baike.nyrenkang.com/Article/details/79594067.SHtML<br>
+www.baike.nyrenkang.com/Article/details/94328458.SHtML<br>
+www.baike.nyrenkang.com/Article/details/19228105.SHtML<br>
+www.baike.nyrenkang.com/Article/details/52175422.SHtML<br>
+www.baike.nyrenkang.com/Article/details/53298555.SHtML<br>
+www.baike.nyrenkang.com/Article/details/79351573.SHtML<br>
+www.baike.nyrenkang.com/Article/details/59191702.SHtML<br>
+www.baike.nyrenkang.com/Article/details/09567840.SHtML<br>
+www.baike.nyrenkang.com/Article/details/23838440.SHtML<br>
+www.baike.nyrenkang.com/Article/details/74028222.SHtML<br>
+www.baike.nyrenkang.com/Article/details/16912638.SHtML<br>
+www.baike.nyrenkang.com/Article/details/20281079.SHtML<br>
+www.baike.nyrenkang.com/Article/details/19539005.SHtML<br>
+www.baike.nyrenkang.com/Article/details/95770674.SHtML<br>
+www.baike.nyrenkang.com/Article/details/05025578.SHtML<br>
+www.baike.nyrenkang.com/Article/details/10580545.SHtML<br>
+www.baike.nyrenkang.com/Article/details/78131381.SHtML<br>
+www.baike.nyrenkang.com/Article/details/13192109.SHtML<br>
+www.baike.nyrenkang.com/Article/details/94624165.SHtML<br>
+www.baike.nyrenkang.com/Article/details/19229000.SHtML<br>
+www.baike.nyrenkang.com/Article/details/40098516.SHtML<br>
+www.baike.nyrenkang.com/Article/details/06617621.SHtML<br>
+www.baike.nyrenkang.com/Article/details/90362520.SHtML<br>
+www.baike.nyrenkang.com/Article/details/49700983.SHtML<br>
+www.baike.nyrenkang.com/Article/details/94962116.SHtML<br>
+www.baike.nyrenkang.com/Article/details/42149598.SHtML<br>
+www.baike.nyrenkang.com/Article/details/18072369.SHtML<br>
+www.baike.nyrenkang.com/Article/details/49001070.SHtML<br>
+www.baike.nyrenkang.com/Article/details/67147788.SHtML<br>
+www.baike.nyrenkang.com/Article/details/02435116.SHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2702:26:26
